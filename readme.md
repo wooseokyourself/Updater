@@ -12,6 +12,42 @@ A lightweight auto-update solution for Windows applications, supporting both MSI
 - Automatic application restart after update
 - User-friendly error handling
 
+## Update Process Flow
+
+1. Main application launches updater.exe with 4 arguments:
+   - Version check URL
+   - Current version
+   - Download save path
+   - Application path
+
+2. Updater checks version:
+   - Downloads version.json from server
+   - Compares current version with latest version
+
+3. If update available:
+   - Shows update confirmation dialog with version information
+   - User can accept or decline
+
+4. If user accepts update:
+   - Shows download progress window
+   - Downloads installer to specified save path
+   - Shows progress bar and allows cancellation
+
+5. After successful download:
+   - Creates a batch script for installation
+   - Launches the batch script
+   - Exits updater with code 0 (signals main app to close)
+
+6. Batch script performs:
+   - Runs the installer (MSI or EXE)
+   - Deletes the downloaded installer
+   - Attempts to restart application from specified path
+   - If app path changed: Shows message to start manually
+   - Deletes itself
+
+7. If no update or user cancels:
+   - Exits updater with code 1 (main app continues running)
+
 ## Server Configuration
 
 ### Version Check JSON
