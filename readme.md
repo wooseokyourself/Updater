@@ -144,4 +144,4 @@ pyinstaller --onefile updater.py
 
 ## License
 
-None
+MIT License
