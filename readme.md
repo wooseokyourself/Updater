@@ -176,8 +176,6 @@ pyinstaller --onefile updater.py
      - Document the limitation in your installer
      - Consider disabling path customization
 
-[Rest of the document remains the same...]
-
 ## License
 
 MIT License
